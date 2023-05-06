@@ -1,6 +1,45 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#if 1	//https://www.acmicpc.net/problem/2775
+#if 1 //https://www.acmicpc.net/problem/9461
+#include <stdio.h>
+/*
+파도반 수열.
+첫삼각형은 1.
+P(N)
+
+<inputs>
+T : Test case 개수
+1<=N<=100
+*/
+
+int main(void)
+{
+	int T, N;
+	long long int P[101] = { 0, }; // int Array로 했을때 안되면 long long으로 한번 더 해보자. overflow가 문제일 수 있음. 입출력은 %lld
+
+	//P(100)까지를 미리 구해놓고 시작해야 할 것 같음.
+	//P(N+1) = P(N) + P(N-4)
+	P[1] = 1;
+	P[2] = 1;
+	P[3] = 1;
+	P[4] = 2;
+	P[5] = 2;
+
+	for (int i = 5; i <= 99; i++)
+	{
+		P[i + 1] = P[i] + P[i - 4];
+	}
+
+	scanf("%d", &T);
+	for (int i = 0; i < T; i++)
+	{
+		scanf("%d", &N);
+		printf("%lld\n", P[N]);
+	}
+}
+#endif
+
+#if 0	//https://www.acmicpc.net/problem/2775
 #include <stdio.h>
 
 /*
