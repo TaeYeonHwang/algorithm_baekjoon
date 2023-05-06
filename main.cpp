@@ -1,6 +1,97 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#if 1 //https://www.acmicpc.net/problem/9461
+#if 1 //https://www.acmicpc.net/problem/10809
+#include <stdio.h>
+
+// C++ String 쓰려면,,///// 
+#include <iostream>
+#include <string>
+//////////////////////////
+
+using namespace std;
+
+/*
+알파벳 소문자로만 이루어진 단어 S.
+S<=100
+a가 처음 등장하는 위치, b가 처음 등장하는 위치, c가....
+등장하지 않으면 -1.
+
+ex.
+baekjoon
+1 0 -1 -1 2 -1 -1 -1 -1 4 3 -1 -1 7 5 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*/
+
+int main(void)
+{
+	// Alphaber ASCI Check. ////////////////////////////////////////////////////////////////////////
+	int z_num = 'z', a_num = 'a';
+	int total_num = z_num - a_num + 1;
+	//printf("%d %d %d %d %d\n", 'a','z',a_num,z_num, total_num); // a : 97, z : 122, tatal_num : 25
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
+	int answer[30] = { 0, };	//{-1,}은 안됨. 0번 index만 -1되고 나머지는 0임.
+	for (int i = 0; i < 30; i++)
+	{
+		answer[i] = -1;
+	}
+	// or memset(answer, -1,sizeof(answer));
+
+	char S[101];
+	scanf("%s", S);
+
+	int idx = 0;
+	while (S[idx] != '\0')	//문자열의 마지막은 '\0'이므로 while loop을 돌릴때 사용한다.
+	{
+		int alphabet = S[idx] - 97;
+		//printf("%d\n", alphabet);
+
+		if ((answer[alphabet] == -1) && (answer[alphabet] < idx))
+		{
+			answer[alphabet] = idx;
+		}
+		idx++;
+	}
+
+	//printf("\n========= ANSEWER =============\n");
+
+	for (int i = 0; i < total_num; i++)
+	{
+		printf("%d ", answer[i]);
+	}
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#if 0
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	// C에서는 String이 없으므로 아래와 같이 char array를 선언하여 받는다. 이때, 동적으로 받을 수 없는 단점이 있음.
+	char S[101];
+	scanf("%s", S);
+
+	int idx = 0;
+	while (S[idx] != '\0')	//문자열의 마지막은 '\0'이므로 while loop을 돌릴때 사용한다.
+	{
+		printf("%c ", S[idx++]);
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+#endif
+
+#if 0
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	// C++ 에서 String 입력은 이렇게 받는다.
+	string tmp_string;
+	cin >> tmp_string;
+
+	//printf("%s\n", tmp_string);		// printf는 C 함수. string type 출력 지원 X.
+	printf("%s\n", tmp_string.c_str());	// 이렇게 c_str 함수를 쓰면 된다.
+
+	int str_len = tmp_string.length();	// length method를 사용하면 length를 쉽게 구할 수 있음. 
+	printf("%d\n", str_len);
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+#endif
+}
+#endif
+
+#if 0 //https://www.acmicpc.net/problem/9461
 #include <stdio.h>
 /*
 파도반 수열.
