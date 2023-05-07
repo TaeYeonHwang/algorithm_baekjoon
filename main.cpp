@@ -1,6 +1,63 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#if 1 //https://www.acmicpc.net/problem/10809
+#if 1	//https://www.acmicpc.net/problem/7568
+#include <stdio.h>
+using namespace std;
+
+/*
+몸무게 x, 키 y : (x, y)로 표현.
+A(x,y) B(p,q) 일때, (x > q) && (y > q) 이면, A의 덩치가 B의 덩치보다 더 크다.
+자신보다 더 큰 덩치의 사람이 k명이라면 그 사람의 덩치 등수는 k+1
+
+이름	(몸무게, 키)	덩치 등수
+A	(55, 185)	2
+B	(58, 183)	2
+C	(88, 186)	1
+D	(60, 175)	2
+E	(46, 155)	5
+
+사람 수 N
+2 <= N <= 50
+10 <= x, y <= 200
+*/
+
+int main(void)
+{
+	int N, rank = 1;
+	int info[50][2] = { 0, };
+
+	scanf("%d", &N);
+
+	for (int i = 0; i < N; i++)
+	{
+		scanf("%d %d", &info[i][0], &info[i][1]);
+	}
+
+	/*
+	// input check.
+	for (int i = 0; i < N; i++)
+	{
+		printf("%d %d\n", info[i][0], info[i][1]);
+	}
+	*/
+
+	for (int i = 0; i < N; i++)	// i : Current Check Node
+	{
+		rank = 1;
+		for (int j = 0; j < N; j++)
+		{
+			if ((info[i][0] < info[j][0]) && (info[i][1] < info[j][1]))
+			{
+				rank++;
+			}
+		}
+		printf("%d ", rank);
+	}
+}
+
+#endif
+
+#if 0 //https://www.acmicpc.net/problem/10809
 #include <stdio.h>
 
 // C++ String 쓰려면,,///// 
